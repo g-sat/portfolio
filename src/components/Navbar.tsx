@@ -97,14 +97,16 @@ const Navbar = () => {
         <div className="relative z-10 h-full flex flex-col backdrop-blur-sm">
           {/* Logo/Brand */}
           <div className="p-4 border-b border-cyan-400/20">
-            <div className="flex items-center space-x-2 mb-2">
+            <div className="flex items-center justify-center space-x-3 mb-2">
               <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse drop-shadow-[0_0_6px_#00ffe7]"></div>
-              <h1 className="text-2xl font-bold text-cyan-400 font-cyber tracking-wider drop-shadow-[0_0_6px_#00ffe7] truncate">
-                PORTFOLIO
-              </h1>
+              <img 
+                src="/assets/WhatsApp Image 2025-07-03 at 00.45.04_1eb6fe77.jpg" 
+                alt="Profile" 
+                className="w-20 h-20 rounded-full border-2 border-cyan-400/50 drop-shadow-[0_0_6px_#00ffe7] object-cover"
+              />
             </div>
-            <div className="w-14 h-1 bg-gradient-to-r from-cyan-400 to-pink-400 rounded-full drop-shadow-[0_0_3px_#00ffe7]"></div>
-            <p className="text-gray-400 text-xs mt-2 font-mono truncate">Developer & Designer</p>
+            <div className="w-14 h-1 bg-gradient-to-r from-cyan-400 to-pink-400 rounded-full drop-shadow-[0_0_3px_#00ffe7] mx-auto"></div>
+            <p className="text-gray-400 text-xs mt-2 font-mono truncate text-center">Developer & Designer</p>
           </div>
 
           {/* Navigation Items */}
@@ -169,9 +171,13 @@ const Navbar = () => {
       }`}>
         <div className="relative z-10 flex items-center justify-between px-4 py-3">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center justify-center space-x-3">
             <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse drop-shadow-[0_0_5px_#00ffe7]"></div>
-            <h1 className="text-lg font-bold text-cyan-400 font-cyber drop-shadow-[0_0_5px_#00ffe7]">PORTFOLIO</h1>
+            <img 
+              src="/assets/me[normal].png" 
+              alt="Profile" 
+              className="w-16 h-16 rounded-full border-2 border-cyan-400/50 drop-shadow-[0_0_5px_#00ffe7] object-cover"
+            />
           </div>
 
           {/* Mobile Menu Button */}
