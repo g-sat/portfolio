@@ -23,7 +23,7 @@ export const Project = ({
 }: ProjectProps) => {
   const [isHidden, setIsHidden] = useState(false);
   return (
-    <>
+    <section id = "projects">
       <div
         className="flex-wrap items-center justify-between py-10 space-y-14 sm:flex sm:space-y-0 max-w-6xl w-full mx-auto"
         onMouseEnter={() => setPreview(image)}
@@ -60,7 +60,7 @@ export const Project = ({
           closeModal={() => setIsHidden(false)}
         />
       )}
-    </>
+    </section>
   );
 };
 
