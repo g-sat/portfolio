@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import HeroImage from '../components/HeroImage';
-import HeroText from '../components/HeroText';
+// import HeroText from '../components/HeroText';
 import Marquee from '../components/Marquee';
 
 const Hero = () => {
@@ -100,13 +100,18 @@ const Hero = () => {
       </div>
       <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center w-full h-full max-w-6xl gap-6 lg:gap-10 px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-transparent to-purple-500/10 animate-pulse" />
-        <div className="w-full flex flex-col items-center absolute top-10 left-0 z-20">
-          <h1 className="font-m1 italic text-7xl font-extrabold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-purple-500 drop-shadow-lg text-center">
-            Sathwik Garikapati
-          </h1>
-        </div>
+        <h1 className="font-m1 italic text-7xl font-extrabold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-purple-500 drop-shadow-lg text-center absolute top-10 left-0 right-0 z-0 flex justify-center">
+          Sathwik Garikapati
+        </h1>
         <HeroImage />
-        <HeroText />
+        {/* <HeroText /> */}
+      </div>
+      
+      {/* Outline positioned above everything */}
+      <div className="absolute top-10 left-0 right-0 z-30 flex justify-center">
+        <h1 className="font-m1 italic text-7xl font-extrabold tracking-widest text-transparent bg-clip-text bg-none drop-shadow-lg text-center" style={{ WebkitTextStroke: '0.25px #fff' }}>
+          Sathwik Garikapati
+        </h1>
       </div>
       {/* Marquee at the bottom */}
       <Marquee />
