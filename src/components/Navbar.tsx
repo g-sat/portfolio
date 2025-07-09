@@ -142,14 +142,15 @@ const Navbar = () => {
             <h3 className="text-xs font-semibold text-gray-400 mb-2 font-mono tracking-wider">CONNECT</h3>
             <div className="space-y-2">
               {[
-                { name: 'GitHub', icon: '🐙' },
-                { name: 'LinkedIn', icon: '💼' },
-                { name: 'Twitter', icon: '🐦' },
-                { name: 'Email', icon: '📧' },
+                { name: 'GitHub', icon: '🐙', url: 'https://github.com/g-sat' },
+                { name: 'LinkedIn', icon: '💼', url: 'https://www.linkedin.com/in/sathwik-garikapati-9937b1337/' },
+                { name: 'Email', icon: '📧', url: 'mailto:g.satl0107@email.com' },
               ].map((social, index) => (
                 <a
                   key={index}
-                  href="#"
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-gray-400 hover:text-cyan-400 transition-all duration-300 group text-xs"
                 >
                   <span className="text-base group-hover:scale-110 transition-transform duration-300">{social.icon}</span>
@@ -213,14 +214,16 @@ const Navbar = () => {
                 <h3 className="text-xs font-semibold text-gray-400 mb-3 font-mono tracking-wider">CONNECT</h3>
                 <div className="grid grid-cols-2 gap-2">
                   {[
-                    { name: 'GitHub', icon: '🐙' },
-                    { name: 'LinkedIn', icon: '💼' },
-                    { name: 'Twitter', icon: '🐦' },
-                    { name: 'Email', icon: '📧' },
+                    { name: 'GitHub', icon: '🐙', url: 'https://github.com/yourusername' },
+                    { name: 'LinkedIn', icon: '💼', url: 'https://linkedin.com/in/yourprofile' },
+                    { name: 'Twitter', icon: '🐦', url: 'https://twitter.com/yourhandle' },
+                    { name: 'Email', icon: '📧', url: 'mailto:your@email.com' },
                   ].map((social, index) => (
                     <a
                       key={index}
-                      href="#"
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="flex items-center space-x-2 text-gray-400 hover:text-cyan-400 transition-colors duration-300 py-2 px-3 rounded-lg hover:bg-black/40"
                     >
                       <span className="text-base">{social.icon}</span>
