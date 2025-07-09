@@ -59,7 +59,7 @@ const IntroAnimation = ({ onComplete }: IntroAnimationProps) => {
         {/* Logo/Title */}
         <div className="mb-8">
           <h1 className="text-6xl md:text-8xl font-bold text-cyan-400 font-cyber mb-4 animate-pulse">
-            PORTFOLIO
+            g.satl0107
           </h1>
           <div className="w-32 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 mx-auto"></div>
         </div>
