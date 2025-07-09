@@ -3,7 +3,6 @@ import About from '../sections/About';
 import Projects from '../sections/Projects';
 import Contact from '../sections/Contact';
 import Navbar from '../components/Navbar';
-import AudioPlayer from '../components/AudioPlayer';
 
 const Home = () => {
   return (
@@ -26,8 +25,6 @@ const Home = () => {
         {/* Contact Section */}
         <Contact />
       </div>
-
-      <AudioPlayer />
     </>
   );
 };

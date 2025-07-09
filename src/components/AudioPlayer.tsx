@@ -91,8 +91,8 @@ const AudioPlayer = () => {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
-      <div className="bg-black/80 backdrop-blur-xl border border-cyan-400/40 rounded-lg p-3 shadow-2xl">
+    <div className="w-full">
+      <div className="bg-black/60 backdrop-blur-xl border border-cyan-400/40 rounded-lg p-2 shadow-lg">
         {/* Audio Element */}
         <audio
           ref={audioRef}
@@ -102,25 +102,25 @@ const AudioPlayer = () => {
           autoPlay
         />
         {/* Controls */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-3">
           {/* Mute/Unmute Button */}
           <button
             onClick={toggleMute}
-            className="w-10 h-10 bg-cyan-400/20 hover:bg-cyan-400/30 border border-cyan-400/50 rounded-full flex items-center justify-center transition-all duration-300 group"
+            className="w-8 h-8 bg-cyan-400/20 hover:bg-cyan-400/30 border border-cyan-400/50 rounded-full flex items-center justify-center transition-all duration-300 group"
           >
             {isMuted ? (
-              <svg className="w-5 h-5 text-cyan-400" fill="currentColor" viewBox="0 0 20 20">
+              <svg className="w-4 h-4 text-cyan-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.414 0zM12.293 7.293a1 1 0 011.414 0L15 8.586l1.293-1.293a1 1 0 111.414 1.414L16.414 10l1.293 1.293a1 1 0 01-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 010-1.414z" clipRule="evenodd" />
               </svg>
             ) : (
-              <svg className="w-5 h-5 text-cyan-400" fill="currentColor" viewBox="0 0 20 20">
+              <svg className="w-4 h-4 text-cyan-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
             )}
           </button>
 
           {/* Volume Control */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 flex-1">
             <div className="text-cyan-400 text-xs">VOL</div>
             <input
               type="range"
@@ -129,12 +129,12 @@ const AudioPlayer = () => {
               step="0.1"
               value={volume}
               onChange={handleVolumeChange}
-              className="w-16 h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
+              className="w-12 h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer slider flex-1"
               style={{
                 background: `linear-gradient(to right, #00ffff ${volume * 100}%, #374151 ${volume * 100}%)`
               }}
             />
-            <div className="text-cyan-400 text-xs w-8">{Math.round(volume * 100)}%</div>
+            <div className="text-cyan-400 text-xs w-6">{Math.round(volume * 100)}%</div>
           </div>
         </div>
       </div>

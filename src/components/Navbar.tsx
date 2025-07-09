@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import AudioPlayer from './AudioPlayer';
 
 const navItems = [
   { name: 'HOME', href: '#home' },
@@ -161,6 +162,11 @@ const Navbar = () => {
                 </a>
               ))}
             </div>
+          </div>
+          
+          {/* Audio Player */}
+          <div className="p-3 border-t border-cyan-400/20">
+            <AudioPlayer />
           </div>
         </div>
       </nav>
