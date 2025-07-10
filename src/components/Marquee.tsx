@@ -23,7 +23,7 @@ const Marquee = () => {
   ]
   return(
     <div>
-      <div className="absolute inset-0 flex flex-col justify-center space-y-8 h-4/5 pointer-events-none">
+      <div className="absolute bottom-0 left-0 right-0 mb-32 flex flex-col justify-center space-y-8 pointer-events-none">
         {scrollingTexts.map((text, index) => (
           <div key={index} className="overflow-hidden whitespace-nowrap">
             <div

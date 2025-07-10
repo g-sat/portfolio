@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@react-three/drei": "^10.5.0",
+    "@react-three/fiber": "^9.2.0",
     "@tailwindcss/vite": "^4.1.11",
     "cobe": "^0.6.4",
     "framer-motion": "^12.23.1",
@@ -19,7 +21,8 @@
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.3",
     "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.11"
+    "tailwindcss": "^4.1.11",
+    "three": "^0.178.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
