@@ -31,7 +31,7 @@ const Contact = () => {
       console.log("Form submitted:", formData);
       
       // Initialize EmailJS
-      emailjs.init("pn-Bw_mS1_QQdofuV");
+      emailjs.init("Cw1UQBEW5FP4qfp5H");
       
       const result = await emailjs.send(
         "service_zuk2lbl",
@@ -42,7 +42,8 @@ const Contact = () => {
           from_email: formData.email,
           to_email: "g.satl0107@email.com",
           message: formData.message,
-        }
+        },
+        "Cw1UQBEW5FP4qfp5H" // Add public key as fourth parameter
       );
       
       console.log("Email sent successfully:", result);
