@@ -1,0 +1,11 @@
+Model Information:
+* title:	Generic Roman Bust
+* source:	https://sketchfab.com/3d-models/generic-roman-bust-38dcb5e8506d4694846573cb8b78e376
+* author:	Andrew Sink (https://sketchfab.com/andrewsink)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Generic Roman Bust" (https://sketchfab.com/3d-models/generic-roman-bust-38dcb5e8506d4694846573cb8b78e376) by Andrew Sink (https://sketchfab.com/andrewsink) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
