@@ -45,7 +45,7 @@ const CircularText = ({
       scale: 1,
       transition: getTransition(spinDuration, start)
     });
-  }, [spinDuration, text, onHover, controls]);
+  }, [spinDuration, text, onHover, controls, rotation]);
 
   const handleHoverStart = () => {
     const start = rotation.get();
@@ -94,7 +94,7 @@ const CircularText = ({
 
   return (
     <motion.div
-      className={`relative m-0 mx-auto h-[200px] w-[200px] origin-center cursor-pointer rounded-full text-center font-black ${className}`}
+      className={`relative m-0 mx-auto origin-center cursor-pointer rounded-full text-center font-bitcount font-normal ${className}`}
       style={{ rotate: rotation }}
       initial={{ rotate: 0 }}
       animate={controls}
@@ -111,7 +111,7 @@ const CircularText = ({
         return (
           <motion.span
             key={i}
-            className="absolute inline-block inset-0 text-2xl transition-all duration-500 ease-[cubic-bezier(0,0,0,1)]"
+            className="absolute inset-0 inline-block text-sm transition-all duration-500 ease-[cubic-bezier(0,0,0,1)] sm:text-lg md:text-xl lg:text-2xl"
             style={{ transform, WebkitTransform: transform }}
           >
             {letter}
