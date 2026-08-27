@@ -246,7 +246,7 @@ const MergedShape = ({
           top-[8%]
           h-[34%]
           w-[23%]
-        "
+        " 
       >
 
         <BentoLabel
