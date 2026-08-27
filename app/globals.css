@@ -45,6 +45,21 @@ body {
   color: #ffffff;
 }
 
+.bento-title {
+  font-family: "Castoro Titling", serif;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.bento-line {
+  font-family: "Bitcount Grid Single", system-ui;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
 .hero-name-bg {
   color: #fff947;
   -webkit-text-stroke: 1.5px #1de81d;
