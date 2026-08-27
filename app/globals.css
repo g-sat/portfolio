@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Castoro+Titling&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Splash&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fascinate&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -15,6 +18,9 @@
   --font-mono: var(--font-geist-mono);
   --font-bitcount: "Bitcount Grid Single", system-ui;
   --font-splash: "Splash", cursive;
+  --font-cinzel: "Cinzel Decorative", serif;
+  --font-castoro: "Castoro Titling", serif;
+  --font-monoton: "Monoton", system-ui;
 }
 
 body {
@@ -31,6 +37,12 @@ body {
   font-family: "Fascinate", system-ui;
   font-weight: 400;
   font-style: normal;
+}
+
+.hero-heading {
+  font-family: "Monoton", system-ui;
+  font-weight: 400;
+  color: #ffffff;
 }
 
 .hero-name-bg {

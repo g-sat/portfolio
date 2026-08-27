@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, type MouseEvent } from 'react'
+import { useEffect, useState, useSyncExternalStore, type MouseEvent } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -11,10 +11,29 @@ const NAV_LINKS = [
   { href: '#contact', label: 'Contact' },
 ] as const
 
+function formatLocalTime() {
+  return new Intl.DateTimeFormat(undefined, {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+  }).format(new Date())
+}
+
+function subscribeToClock(onStoreChange: () => void) {
+  const id = window.setInterval(onStoreChange, 1000)
+  return () => window.clearInterval(id)
+}
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [active, setActive] = useState('#home')
+  const localTime = useSyncExternalStore(
+    subscribeToClock,
+    formatLocalTime,
+    () => '--:--:--'
+  )
 
   useEffect(() => {
     const onScroll = () => {
@@ -63,7 +82,7 @@ export default function Navbar() {
           : 'bg-transparent'
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 sm:px-8 lg:px-12">
+      <div className="relative mx-auto flex max-w-7xl items-center justify-between px-5 py-3 sm:px-8 lg:px-12">
         <Link
           href="#home"
           onClick={(e) => handleNavClick(e, '#home')}
@@ -79,7 +98,7 @@ export default function Navbar() {
           />
         </Link>
 
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
               <a
@@ -97,36 +116,42 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <button
-          type="button"
-          aria-label={isOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={isOpen}
-          onClick={() => setIsOpen((open) => !open)}
-          className="relative z-50 flex h-10 w-10 items-center justify-center text-white md:hidden"
-        >
-          <span className="sr-only">Menu</span>
-          <div className="flex w-5 flex-col gap-1.5">
-            <span
-              className={`h-0.5 w-full bg-current transition-transform duration-300 ${
-                isOpen ? 'translate-y-2 rotate-45' : ''
-              }`}
-            />
-            <span
-              className={`h-0.5 w-full bg-current transition-opacity duration-300 ${
-                isOpen ? 'opacity-0' : 'opacity-100'
-              }`}
-            />
-            <span
-              className={`h-0.5 w-full bg-current transition-transform duration-300 ${
-                isOpen ? '-translate-y-2 -rotate-45' : ''
-              }`}
-            />
-          </div>
-        </button>
+        <div className="flex items-center gap-3">
+          <span className="font-bitcount text-sm tracking-wide text-white tabular-nums">
+            {localTime}
+          </span>
+
+          <button
+            type="button"
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isOpen}
+            onClick={() => setIsOpen((open) => !open)}
+            className="relative z-50 flex h-10 w-10 items-center justify-center text-white md:hidden"
+          >
+            <span className="sr-only">Menu</span>
+            <div className="flex w-5 flex-col gap-1.5">
+              <span
+                className={`h-0.5 w-full bg-current transition-transform duration-300 ${
+                  isOpen ? 'translate-y-2 rotate-45' : ''
+                }`}
+              />
+              <span
+                className={`h-0.5 w-full bg-current transition-opacity duration-300 ${
+                  isOpen ? 'opacity-0' : 'opacity-100'
+                }`}
+              />
+              <span
+                className={`h-0.5 w-full bg-current transition-transform duration-300 ${
+                  isOpen ? '-translate-y-2 -rotate-45' : ''
+                }`}
+              />
+            </div>
+          </button>
+        </div>
       </div>
 
       <div
-        className={`fixed inset-0 top-[65px] z-40 bg-black/95 backdrop-blur-md transition-all duration-300 md:hidden ${
+        className={`fixed inset-0 top-16.25 z-40 bg-black/95 backdrop-blur-md transition-all duration-300 md:hidden ${
           isOpen
             ? 'pointer-events-auto opacity-100'
             : 'pointer-events-none opacity-0'
