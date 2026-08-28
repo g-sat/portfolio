@@ -251,3 +251,60 @@ body {
     transform: skewX(-12deg) rotate(-8deg);
   }
 }
+
+.contact-splash {
+  color: #fff947;
+  -webkit-text-stroke: 1.5px #1de81d;
+  paint-order: stroke fill;
+  opacity: 0.55;
+  text-shadow:
+    0 0 8px #fff947,
+    0 0 20px rgba(29, 232, 29, 0.45);
+  transform: skewX(-10deg) rotate(-8deg);
+  animation: contact-splash-breathe 5.5s ease-in-out infinite;
+}
+
+@keyframes contact-splash-breathe {
+  0%,
+  100% {
+    opacity: 0.4;
+    filter: blur(0px);
+  }
+  50% {
+    opacity: 0.65;
+    filter: blur(0.2px);
+  }
+}
+
+.contact-marquee__track {
+  animation: contact-marquee-scroll 42s linear infinite;
+}
+
+@keyframes contact-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-marquee__track,
+  .contact-splash {
+    animation: none;
+  }
+}
+
+.contact-row {
+  transition: background-color 0.35s ease, padding-left 0.35s ease;
+}
+
+.contact-row:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(29, 232, 29, 0.06),
+    transparent 55%
+  );
+  padding-left: 0.35rem;
+}
