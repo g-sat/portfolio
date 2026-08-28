@@ -1,5 +1,6 @@
 import { About } from '@/src/about/about'
 import { Hero } from '@/src/hero/hero'
+import { Projects } from '@/src/projects/projects'
 import Navbar from '@/src/overalls/navbar'
 
 export default function Home() {
@@ -13,18 +14,7 @@ export default function Home() {
 
       <About />
 
-      <section
-        id="projects"
-        className="scroll-mt-20 border-t border-white/10 px-5 py-24 sm:px-8 lg:px-16"
-      >
-        <div className="mx-auto max-w-3xl">
-          <p className="text-xs uppercase tracking-[0.2em] text-neutral-500">Work</p>
-          <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">Projects</h2>
-          <p className="mt-4 max-w-xl text-neutral-400">
-            Project cards and case studies will live in this section.
-          </p>
-        </div>
-      </section>
+      <Projects />
 
       <section
         id="contact"

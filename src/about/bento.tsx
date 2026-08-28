@@ -1,10 +1,11 @@
-'use client';
+'use client'
 
 import type {
   CSSProperties,
   HTMLAttributes,
   ReactNode
-} from 'react';
+} from 'react'
+import FlipClock from '@/src/about/flip-clock';
 
 
 type MergedShapeProps = HTMLAttributes<HTMLDivElement> & {
@@ -37,13 +38,8 @@ function BentoLabel({
         flex-col
         justify-start
         gap-2
-        pt-2
-        pr-2
-        pb-2
-        pl-4
-        sm:pt-5
-        sm:pr-5
-        sm:pb-5
+        p-2
+        sm:p-5
         ${className}
       `}
     >
@@ -246,7 +242,7 @@ const MergedShape = ({
           top-[8%]
           h-[34%]
           w-[23%]
-        " 
+        "
       >
 
         <BentoLabel
@@ -263,7 +259,7 @@ const MergedShape = ({
             Automation.
             Intelligence.
           "
-          className="!pl-8 sm:!pl-10"
+          className='pl-8 sm:pl-10'
         />
 
       </div>
@@ -292,10 +288,10 @@ const MergedShape = ({
             
         }
           title={
-            <span className="pl-4">
+            <span className="pl-6 sm:pl-8">
               HUMAN ×
               <br />
-              <span className="pl-4">MACHINE</span>
+              <span className="pl-6 sm:pl-8">MACHINE</span>
             </span>
           }
         //   line="
@@ -371,6 +367,21 @@ const MergedShape = ({
           "
         />
 
+      </div>
+
+
+      {/* FLIP CLOCK — bottom-right square */}
+
+      <div
+        className="
+          absolute
+          left-[75%]
+          top-[56%]
+          h-[36%]
+          w-[19%]
+        "
+      >
+        <FlipClock />
       </div>
 
 
