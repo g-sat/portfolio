@@ -1,0 +1,72 @@
+---
+alwaysApply: true
+---
+## 3. Photorealism & Lighting Rules (Non-Negotiable)
+A 3D scene lives or dies by its lighting, reflections, and post-processing. Never rely on flat `ambientLight` + `pointLight` alone.
+1. **Image-Based Lighting (IBL):** Every realistic scene MUST include `<Environment>` from `@react-three/drei` using HDRI maps or procedural `<Lightformer>` studio softboxes to create realistic specular highlights across curved surfaces.
+2. **Color Management & Tone Mapping:**
+   - Enforce `gl={{ antialias: false, powerPreference: 'high-performance', stencil: false, depth: true }}` (disable native MSAA when using post-processing EffectComposer).
+   - Set `toneMapping: THREE.ACESFilmicToneMapping` and `toneMappingExposure: 1.0–1.2`.
+3. **Physical Materials:**
+   - Use `MeshPhysicalMaterial` for hero assets: dial in `roughness`, `metalness`, `clearcoat`, `clearcoatRoughness`, `iridescence`, and `transmission` (for glass/liquid).
+   - Never use `MeshBasicMaterial` for hero geometry unless driving a custom GLSL shader.
+4. **Cinematic Post-Processing Stack:** Always wrap scenes in `<EffectComposer multisampling={4}>` featuring a subtle, tasteful combination of:
+   - `<Bloom mipmapBlur luminanceThreshold={1.0} intensity={0.4} />` (only emissive/specular peaks glow, never wash out the scene)
+   - `<Vignette eskil={false} offset={0.15} darkness={0.65} />`
+   - `<Noise opacity={0.025} />` (subtle film grain eliminates color banding and adds tactile realism)
+   - Optional `<DepthOfField>` or `<ChromaticAberration>` tied dynamically to scroll velocity.
+
+---
+
+## 4. Custom GLSL & TSL Shader Standards
+When creating organic motion, liquid distortion, terrain, or interactive hover ripples:
+- **Never** deform high-poly meshes on the CPU inside `useFrame`. Offload vertex displacement to custom GLSL vertex shaders (using 3D Simplex/Curl noise) or `three-custom-shader-material` so PBR lighting/shadows still react accurately to displaced vertices.
+- **Standard Uniforms:** Always pass `uTime`, `uMouse` (lerped 2D/3D vector), `uScrollProgress` (`0.0` to `1.0`), and `uVelocity`.
+- **Interactive Fluidity:** Smooth all mouse/pointer uniforms using exponential decay (`THREE.MathUtils.damp`) rather than raw pointer coordinates so shaders feel weighted and liquid.
+
+---
+
+## 5. Animation, Scroll & Physics Choreography
+1. **Lenis + GSAP Synchronization:**
+   - Initialize `Lenis` smooth scroll at the root layout and synchronize its ticker directly with `gsap.ticker.add((time) => lenis.raf(time * 1000))` and `ScrollTrigger.update`.
+2. **Scroll-Driven 3D Storytelling:**
+   - Never let the 3D scene sit static while HTML scrolls past. Map scroll progress (`0 -> 1`) to camera spline trajectories (`CatmullRomCurve3`), hero mesh morphs/rotations, lighting color shifts, and shader uniforms.
+3. **Typography & Micro-Interactions:**
+   - Split hero headlines into masked lines/characters (`overflow: hidden` wrappers) and animate `yPercent: 100 -> 0` with `power4.out` easing.
+   - Implement magnetic hover physics on primary CTAs and custom lerped cursor followers that scale/morph when hovering over interactive 3D meshes.
+4. **Preloader & Entry Sequence:**
+   - Track asset loading via `useProgress` (`@react-three/drei`). Hold the curtain until textures/GLTFs compile (`gl.compile`), then trigger a choreographed reveal (camera dolly-in + staggered text entrance).
+
+---
+
+## 6. 60 FPS Performance & Memory Discipline
+Awwwards judges immediately reject janky frame drops. Enforce strict GPU/CPU hygiene:
+1. **ZERO `useState` inside `useFrame`:** Never trigger React re-renders at 60/120Hz. Mutate `ref.current` transforms, uniforms, and mutable state objects directly inside `useFrame((state, delta) => ...)`.
+2. **Frame-Rate Independence:** Always use `delta` or `THREE.MathUtils.damp(current, target, lambda, delta)` for animations—never hardcode frame increments like `mesh.rotation.y += 0.01`.
+3. **Instancing & Asset Optimization:**
+   - Any repeated geometry (>10 objects, particles, debris, foliage) MUST use `<InstancedMesh>` or GPU `Points` with custom shaders.
+   - Load compressed `.glb` models using Draco / Meshopt (`useGLTF`) and `.ktx2` compressed textures where applicable.
+4. **Memory Disposal:** Explicitly dispose of custom geometries, materials, render targets (`WebGLRenderTarget`), and textures on component unmount to prevent WebGL context loss during hot-reloads or route transitions.
+
+---
+
+## 7. Directory & Modular Architecture
+Structure every 3D project cleanly so scene logic, shaders, and DOM overlays stay decoupled:
+```text
+src/
+├── components/
+│   ├── canvas/
+│   │   ├── Scene.tsx           # Persistent R3F Canvas, Camera, PostProcessing
+│   │   ├── Lighting.tsx        # HDRI Environment + Lightformers + Shadows
+│   │   ├── HeroArtifact.tsx    # Main interactive 3D centerpiece
+│   │   └── CameraRig.tsx       # Scroll-linked spline + mouse parallax rig
+│   ├── dom/
+│   │   ├── SmoothScroll.tsx    # Lenis + GSAP ScrollTrigger bridge
+│   │   ├── Preloader.tsx       # Asset progress counter + curtain reveal
+│   │   ├── CustomCursor.tsx    # Lerped magnetic cursor
+│   │   └── OverlaySections.tsx # Editorial HTML sections synced to scroll
+├── shaders/
+│   ├── hero.vert.glsl          # Simplex/Curl noise vertex displacement
+│   └── hero.frag.glsl          # Fresnel rim lighting, iridescence, grain
+└── store/
+    └── useExperienceStore.ts   # Zustand store (non-reactive refs for 60fps loop)

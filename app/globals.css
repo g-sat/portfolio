@@ -308,3 +308,177 @@ body {
   );
   padding-left: 0.35rem;
 }
+
+/* ─────────────────────────────────────────────────────────────
+   /experience — maximalist WebGL stage overlays
+   ───────────────────────────────────────────────────────────── */
+
+html.is-loading,
+html.is-loading body {
+  overflow: hidden;
+}
+
+@media (pointer: fine) {
+  .exp-root,
+  .exp-root a,
+  .exp-root button,
+  .exp-root [data-cursor] {
+    cursor: none;
+  }
+}
+
+/* Masked line reveal: wrapper clips, inner line animates yPercent */
+.exp-mask {
+  display: block;
+  overflow: hidden;
+  padding-block: 0;
+}
+
+.exp-line {
+  display: block;
+  font-family: "Castoro Titling", serif;
+  text-transform: uppercase;
+  letter-spacing: -0.055em;
+  line-height: 1.12; /* taller line box = taller clipping container, glyphs never cut */
+  will-change: transform;
+  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.75);
+}
+
+.exp-title {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  margin-bottom: 1.5rem;
+  padding-block: 2vh;
+  will-change: transform;
+}
+
+.exp-l1 {
+  font-size: clamp(3rem, 13.5vw, 14rem);
+}
+.exp-l2 {
+  font-size: clamp(2.4rem, 10.2vw, 10.5rem);
+}
+.exp-l3 {
+  font-size: clamp(1.7rem, 5.8vw, 6.4rem);
+}
+
+/* Foreground line sits in front of the bust, outlined like a stamp */
+.exp-front {
+  color: transparent;
+  -webkit-text-stroke: clamp(1.5px, 0.2vw, 3px) #ffffff;
+  text-shadow: none;
+}
+.exp-front span {
+  -webkit-text-stroke: 0;
+}
+
+/* Overlap + stagger for the stacked headline */
+.exp-shift-a {
+  margin-top: -0.06em;
+  margin-left: clamp(1rem, 8vw, 9rem);
+}
+.exp-shift-b {
+  margin-top: -0.04em;
+  margin-left: clamp(0rem, 2vw, 3rem);
+}
+
+.exp-outline {
+  color: rgba(0, 0, 0, 0.35);
+  -webkit-text-stroke: clamp(1.5px, 0.2vw, 3px) #ffffff;
+}
+
+.exp-chapter-title {
+  will-change: transform;
+}
+.exp-chapter-title .exp-line {
+  font-size: clamp(2.6rem, 11vw, 11.5rem);
+}
+
+.exp-vertical {
+  writing-mode: vertical-rl;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* Glassmorphism card */
+.exp-glass {
+  position: relative;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.09),
+    rgba(255, 255, 255, 0.025)
+  );
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 20px 60px -20px rgba(0, 0, 0, 0.8);
+}
+
+.exp-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    120% 80% at 0% 0%,
+    rgba(29, 232, 29, 0.12),
+    transparent 55%
+  );
+}
+
+/* Corner registration marks */
+.exp-reg {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  opacity: 0.45;
+  background:
+    linear-gradient(#fff, #fff) center / 100% 1px no-repeat,
+    linear-gradient(#fff, #fff) center / 1px 100% no-repeat;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exp-line {
+    will-change: auto;
+  }
+}
+
+/* Quick Intro bento: type scales with the card's own width (container query), not the viewport */
+.exp-bento { container-type: inline-size; }
+.exp-bento h3.bento-title { font-size: 4.2cqw; max-width: none; }
+.exp-bento h3.bento-title.m-0 { font-size: 5.4cqw; white-space: nowrap; }
+.exp-bento .bento-line { font-size: max(7px, 1.35cqw); letter-spacing: 0.18em; max-width: none; }
+.exp-bento span.font-bitcount { font-size: max(7px, 1.3cqw); letter-spacing: 0.3em; }
+/* ---- Less generic: spotlight, marquee, ghost indices ---- */
+.exp-glass::after, .exp-bento::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
+  background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 0%), rgba(29,232,29,0.20), transparent 60%);
+  opacity: 0; transition: opacity .4s ease; mix-blend-mode: screen;
+}
+.exp-glass:hover::after, .exp-bento:hover::after { opacity: 1; }
+.exp-bento { position: relative; transform-style: preserve-3d; will-change: transform; }
+.exp-glass { will-change: transform; }
+
+.exp-marq-solid, .exp-marq-outline {
+  font-family: "Castoro Titling", serif;
+  text-transform: uppercase; letter-spacing: -0.04em; line-height: 1;
+  font-size: clamp(3rem, 11vw, 10rem);
+}
+.exp-marq-solid { color: #fff; }
+.exp-marq-outline { color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,0.7); }
+.exp-marq-star { color: #1de81d; font-size: clamp(1.5rem, 4vw, 3.5rem); text-shadow: 0 0 24px rgba(29,232,29,.8); }
+
+.exp-ghost-index {
+  font-family: "Castoro Titling", serif;
+  font-size: clamp(10rem, 34vw, 32rem); line-height: 0.8; letter-spacing: -0.08em;
+  color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.12); z-index: -1;
+}
+/* Themed scrollbar: slim, black track, green thumb */
+html { scrollbar-width: thin; scrollbar-color: #1de81d #050505; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: #1de81d; border-radius: 999px; box-shadow: 0 0 8px rgba(29,232,29,.6); }
+::-webkit-scrollbar-thumb:hover { background: #7dff7d; }
